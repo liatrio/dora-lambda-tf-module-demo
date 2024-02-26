@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"time"
 
@@ -12,8 +13,20 @@ type MyResponse struct {
 	Timestamp string `json:"timestamp"`
 }
 
-func HandleRequest(ctx context.Context) (*MyResponse, error) {
-	return &MyResponse{Timestamp: fmt.Sprintf("%d", time.Now().Unix())}, nil
+type APIGatewayProxyResponse struct {
+	StatusCode int               `json:"statusCode"`
+	Headers    map[string]string `json:"headers"`
+	Body       string            `json:"body"`
+}
+
+func HandleRequest(ctx context.Context) (*APIGatewayProxyResponse, error) {
+	resp := &MyResponse{Timestamp: fmt.Sprintf("%d", time.Now().Unix())}
+	body, _ := json.Marshal(resp)
+	return &APIGatewayProxyResponse{
+		StatusCode: 200,
+		Headers:    map[string]string{"Content-Type": "application/json"},
+		Body:       string(body),
+	}, nil
 }
 
 func main() {
