@@ -8,6 +8,44 @@ instructions.
 [oteldora]: https://github.com/liatrio/opentelemetry-demo/blob/main/docs/delivery.md#github-app-setup-for-webhook-events
 
 ---
+## Terraform Module Documentation
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
+| <a name="requirement_archive"></a> [archive](#requirement\_archive) | >= 2.4 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.66 |
+
+## Providers
+
+No providers.
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_hello-world-lambda"></a> [hello-world-lambda](#module\_hello-world-lambda) | ./modules/lambda_func | n/a |
+
+## Resources
+
+No resources.
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | n/a | `string` | `"us-east-1"` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| <a name="output_invoke_url"></a> [invoke\_url](#output\_invoke\_url) | n/a |
+| <a name="output_lambda_arn"></a> [lambda\_arn](#output\_lambda\_arn) | n/a |
+<!-- END_TF_DOCS -->
 
 ## Requirements
 

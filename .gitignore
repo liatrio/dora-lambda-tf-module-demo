@@ -37,3 +37,6 @@ terraform.rc
 
 # Ignore Lambda zip code
 *.zip
+
+# Brewfile lock
+Brewfile.lock.json

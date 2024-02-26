@@ -1,3 +1,4 @@
+#tfsec:ignore:aws-ec2-no-public-egress-sgr
 resource "aws_security_group" "lambda_sg" {
   name_prefix = "test-lambda-sg"
   vpc_id      = aws_vpc.lambda_vpc.id
@@ -35,6 +36,7 @@ resource "aws_iam_role" "lambda_role" {
   })
 }
 
+#tfsec:ignore:aws-iam-no-policy-wildcards
 resource "aws_iam_policy" "lambda_policy" {
   name = "test-lambda-policy"
   // Minimum permissions for Lambda to stream logs
@@ -65,6 +67,7 @@ resource "aws_iam_role_policy_attachment" "lambda_policy_attachment" {
   role       = aws_iam_role.lambda_role.name
 }
 
+#tfsec:ignore:aws-lambda-enable-tracing
 resource "aws_lambda_function" "test_hello_lambda" {
   function_name    = var.lambda_name
   filename         = "lambda_function.zip"

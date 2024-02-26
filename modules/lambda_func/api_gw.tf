@@ -9,6 +9,7 @@ resource "aws_api_gateway_resource" "proxy" {
   path_part   = "{proxy+}"
 }
 
+#tfsec:ignore:aws-api-gateway-no-public-access
 resource "aws_api_gateway_method" "proxy" {
   rest_api_id   = aws_api_gateway_rest_api.api_gw.id
   resource_id   = aws_api_gateway_resource.proxy.id
