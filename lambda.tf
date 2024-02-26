@@ -67,14 +67,28 @@ resource "aws_iam_role_policy_attachment" "lambda_policy_attachment" {
   role       = aws_iam_role.lambda_role.name
 }
 
+resource "null_resource" "function_binary" {
+  provisioner "local-exec" {
+    command = "GOOS=linux GOARCH=amd64 CGO_ENABLED=0 GOFLAGS=-trimpath go build -mod=readonly -ldflags='-s -w' -o ${local.binary_path} ${local.src_path}"
+  }
+}
+
+data "archive_file" "function_archive" {
+  depends_on  = [null_resource.function_binary]
+  type        = "zip"
+  source_file = local.binary_path
+  output_path = local.archive_path
+}
+
 #tfsec:ignore:aws-lambda-enable-tracing
 resource "aws_lambda_function" "test_hello_lambda" {
-  function_name    = var.lambda_name
-  filename         = "lambda_function.zip"
-  source_code_hash = data.archive_file.python_lambda_package.output_base64sha256
-  handler          = "lambda_function.lambda_handler"
+  function_name    = local.function_name
+  filename         = local.archive_path
+  source_code_hash = data.archive_file.function_archive.output_base64sha256
   role             = aws_iam_role.lambda_role.arn
-  runtime          = "python3.8"
+  handler          = local.binary_name
+  memory_size      = 128
+  runtime          = "go1.x"
   vpc_config {
     subnet_ids         = [aws_subnet.lambda_pvt_subnet.id]
     security_group_ids = [aws_security_group.lambda_sg.id]

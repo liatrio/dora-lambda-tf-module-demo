@@ -176,6 +176,7 @@ git commit --no-verify -m "your commit message"
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
 | <a name="requirement_archive"></a> [archive](#requirement\_archive) | >= 2.4 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.66 |
+| <a name="requirement_null"></a> [null](#requirement\_null) | 3.2.2 |
 
 ## Providers
 
@@ -183,6 +184,7 @@ git commit --no-verify -m "your commit message"
 |------|---------|
 | <a name="provider_archive"></a> [archive](#provider\_archive) | 2.4.2 |
 | <a name="provider_aws"></a> [aws](#provider\_aws) | 5.38.0 |
+| <a name="provider_null"></a> [null](#provider\_null) | 3.2.2 |
 
 ## Modules
 
@@ -207,19 +209,20 @@ No modules.
 | [aws_security_group.lambda_sg](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_subnet.lambda_pvt_subnet](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
 | [aws_vpc.lambda_vpc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc) | resource |
-| [archive_file.python_lambda_package](https://registry.terraform.io/providers/hashicorp/archive/latest/docs/data-sources/file) | data source |
+| [null_resource.function_binary](https://registry.terraform.io/providers/hashicorp/null/3.2.2/docs/resources/resource) | resource |
+| [archive_file.function_archive](https://registry.terraform.io/providers/hashicorp/archive/latest/docs/data-sources/file) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | n/a | `string` | `"us-east-1"` | no |
-| <a name="input_lambda_name"></a> [lambda\_name](#input\_lambda\_name) | n/a | `string` | `"test-lambda-function"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
+| <a name="output_binary_path"></a> [binary\_path](#output\_binary\_path) | n/a |
 | <a name="output_invoke_url"></a> [invoke\_url](#output\_invoke\_url) | n/a |
 | <a name="output_lambda_arn"></a> [lambda\_arn](#output\_lambda\_arn) | n/a |
 <!-- END_TF_DOCS -->
