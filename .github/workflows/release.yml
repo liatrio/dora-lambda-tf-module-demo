@@ -1,0 +1,23 @@
+name: Semantic Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+    go-semantic-release:
+        if: ${{ github.ref == 'refs/heads/main' }}
+        name: go-semantic-release
+        needs: [build]
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+        steps:
+            - name: Run go-semantic-release
+              uses: go-semantic-release/action@v1
+              with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  changelog-generator-opt: emojis=true
+                  allow-initial-development-versions: true
