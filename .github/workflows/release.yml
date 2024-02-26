@@ -1,16 +1,14 @@
-name: Semantic Release
+---
+name: semver release
 
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
+    push:
+        branches: [main]
 
 jobs:
     go-semantic-release:
         if: ${{ github.ref == 'refs/heads/main' }}
         name: go-semantic-release
-        needs: [build]
         runs-on: ubuntu-latest
         permissions:
             contents: write
