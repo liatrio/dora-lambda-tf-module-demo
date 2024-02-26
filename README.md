@@ -1,12 +1,13 @@
-# dora-lambda-deploy-demo
+# dora-lambda-tf-module-demo
 
-A Lambda deployment repository for the DORA metrics demo.
+A Lambda Terraform Module repository for the DORA metrics demo.
+
+To get started with DORA metrics, see this [OpenTelemetry DORA Demo][oteldora]
+instructions.
+
+[oteldora]: https://github.com/liatrio/opentelemetry-demo/blob/main/docs/delivery.md#github-app-setup-for-webhook-events
 
 ---
-
-# Lambda Template Repository
-
-This repository provides a template for deploying an AWS Lambda with Terraform. It includes all the necessary files and directory structure to manage your infrastructure as code using Terraform. It also exposes a REST endpoint using API Gateway to call your Lambda.
 
 ## Requirements
 
@@ -44,15 +45,22 @@ project-root/
 
 ## Directory Structure
 
-- `main.tf`: This file contains the module that Terraform will deploy - essentially everything contained in /modules/lambda_func.
-- `lambda.tf`: This file contains the Lambda portion of the configuration and associated permissions in IAM.
-- `vpc.tf`: This file contains the VPC configuration to deploy Lambda in a private subnet.
-- `api_gw.tf`: This file contains the API Gateway configuration to expose the REST API for Lambda.
+- `main.tf`: This file contains the module that Terraform will deploy -
+  essentially everything contained in /modules/lambda_func.
+- `lambda.tf`: This file contains the Lambda portion of the configuration and
+  associated permissions in IAM.
+- `vpc.tf`: This file contains the VPC configuration to deploy Lambda in a
+  private subnet.
+- `api_gw.tf`: This file contains the API Gateway configuration to expose the
+  REST API for Lambda.
 - `provider.tf`: This file defines the provider and required version.
-- `variables.tf`: This file defines variables used in the Terraform configuration.
+- `variables.tf`: This file defines variables used in the Terraform
+  configuration.
 - `outputs.tf`: This file defines any outputs from your Terraform project.
-- `.pre-commit-config.yaml`: This file contains configurations for pre-commit hooks.
-- `code/.lambda_function.py`: This file contains the python code that returns a "Hello World" message.
+- `.pre-commit-config.yaml`: This file contains configurations for pre-commit
+  hooks.
+- `code/.lambda_function.py`: This file contains the python code that returns a
+  "Hello World" message.
 
 
 ## Instructions
@@ -84,7 +92,8 @@ terraform init
 
 ### 4. Configure Variables
 
-Open `variables.tf` and configure the necessary variables. You can also create a `terraform.tfvars` file to set these values.
+Open `variables.tf` and configure the necessary variables. You can also create
+a `terraform.tfvars` file to set these values.
 
 ### 5. Plan and Apply
 
@@ -100,7 +109,8 @@ If the plan looks good, apply it.
 terraform apply
 ```
 
-You'll be prompted to confirm that you want to create the resources defined in your `main.tf` file. Type `yes` to proceed.
+You'll be prompted to confirm that you want to create the resources defined in
+your `main.tf` file. Type `yes` to proceed.
 
 ### 6. Outputs
 
@@ -110,7 +120,8 @@ You can curl the `invoke_url` output to receive a "Hello World" message.
 
 ### 7. Cleanup
 
-After you are done using the infrastructure or want to start over, run the following command to destroy all the resources created by Terraform:
+After you are done using the infrastructure or want to start over, run the
+following command to destroy all the resources created by Terraform:
 
 ```bash
 terraform destroy
@@ -118,7 +129,8 @@ terraform destroy
 
 ## Usage of Modules
 
-Modules in the `modules/` directory can be used by referring to their path in the `main.tf` file. For example, to use the `lambda_func` module:
+Modules in the `modules/` directory can be used by referring to their path in
+the `main.tf` file. For example, to use the `lambda_func` module:
 
 ```hcl
 module "lambda_hello_world" {
@@ -129,7 +141,9 @@ module "lambda_hello_world" {
 
 ## Pre-Commit Hooks
 
-This repository uses pre-commit hooks to run `terraform fmt`, `terraform validate` before each commit. These hooks ensure that your Terraform files are correctly formatted and validated.
+This repository uses pre-commit hooks to run `terraform fmt`, `terraform
+validate` before each commit. These hooks ensure that your Terraform files are
+correctly formatted and validated.
 
 ### To Run Hooks Manually
 
