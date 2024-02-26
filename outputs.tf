@@ -1,7 +1,7 @@
 output "lambda_arn" {
-  value = module.hello-world-lambda.lambda_arn
+  value = aws_lambda_function.test_hello_lambda.arn
 }
 
 output "invoke_url" {
-  value = module.hello-world-lambda.invoke_url
+  value = aws_api_gateway_deployment.api_deployment.invoke_url
 }
