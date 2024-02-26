@@ -41,3 +41,6 @@ terraform.rc
 
 # Brewfile lock
 Brewfile.lock.json
+
+# Jetbrains IDE files
+.idea
