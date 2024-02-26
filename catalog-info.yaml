@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "dora-lambda-deploy-demo"
+  description: "A Lambda deployment repository for the DORA metrics demo."
+  annotations:
+    github.com/project-slug: liatrio/dora-lambda-deploy-demo
+spec:
+  type: website
+  lifecycle: experimental
+  owner: "group:default/tag-o11y"
